@@ -7,7 +7,7 @@ function l (msg) {
 document.defaultView.addEventListener('message', function (e) {
     try {
         if (e.origin !== window.location.origin ||
-            e.data.webappfind.command !== 'directoryPath') {
+            !e.data.webappfind.directoryPath) {
             return;
         }
     }

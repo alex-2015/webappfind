@@ -10,7 +10,13 @@ function l (msg) {
 }
 
 document.defaultView.addEventListener('message', function (e) { // Listen for subsequent requests to read the file (necessary also for cases where the 'webapp-view' listener cannot be added immediately, e.g., within our SVG-edit extension which is loaded by the main page doing a script tag injection)
-    if (e.origin !== window.location.origin || !Array.isArray(e.data) || e.data[0] !== 'webapp-read') {
+    try {
+        if (e.origin !== window.location.origin ||
+            !e.data.webappfind.read) {
+            return;
+        }
+    }
+    catch (undesiredMessageFormat) {
         return;
     }
     self.port.emit('webappfindRead');
@@ -24,12 +30,19 @@ self.port.on('webappfindStart', function (result) {
 
     if (!addedMessageListener) {
         document.defaultView.addEventListener('message', function (e) {
-        
-            if (e.origin !== window.location.origin || !Array.isArray(e.data) || e.data[0] !== 'webapp-save') {
+            var waf;
+            try {
+                waf = e.data.webappfind;
+                if (e.origin !== window.location.origin ||
+                    !waf.save) {
+                    return;
+                }
+            }
+            catch (undesiredMessageFormat) {
                 return;
             }
-            var pathID = e.data[1],
-                newContents = e.data[2];
+            var pathID = waf.pathID,
+                newContents = waf.newContents;
 l(newContents.length);
             self.port.emit('webappfindSave', [pathID, newContents]);
         
@@ -54,8 +67,9 @@ l('made it past uri check' + uri);
     if (0 && uri.match(/file:/)) {
 l('file protocol');
         // Todo: We could (and should) set this message to the relevant URL if file: support is added
+        // Todo: Indicate whether binary or not!
         try {
-            document.defaultView.postMessage({webappfind: {method: 'local', 'webapp-view', pathID, content}}, '*'); // window.location.href); // Gives security error while window.location.origin is null for file:
+            document.defaultView.postMessage({webappfind: {method: 'local', 'webapp-view', binary: ...., pathID, content}}, '*'); // window.location.href); // Gives security error while window.location.origin is null for file:
         }
         catch(e) {
             l('file protocol err: '+e);
@@ -64,7 +78,7 @@ l('file protocol');
     else {
 l(pathID);
 l('contentlen'+content.length);
-        document.defaultView.postMessage({webappfind: {method: 'local', 'webapp-view', pathID, content}}, window.location.origin);
+        document.defaultView.postMessage({webappfind: {method: 'local', 'webapp-view', binary: ...., pathID, content}}, window.location.origin);
     }
 });
 
