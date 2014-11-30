@@ -537,7 +537,9 @@ within the desktop)
     1. Disable further save attempts with bad ID supplied in case a however previously approved site is attempting to guess at the paths of (if the user has enabled path transmission), or at the GUID representing, other non-approved files
     1. Check upon each save attempt that the loaded protocol is still registered as a handler (and remove usage notes above once implemented).
     1. Listen for unregistration of protocols to disable acting on future messages from them (only relevant for pages already loaded in this session).
-1. Option to avoid or allow new tabs for same URI/mode/filetype/path? (option to get the same tab or new tabs for them?); option to push to all open windows in different manner so can notify user of updates but not change focus, etc.
+1. Window/tab targeting
+    1. Option to avoid or allow new tabs for same URI/mode/filetype/path? (option to get the same tab or new tabs for them?); option to push to all open windows in different manner so can notify user of updates but not change focus, etc.
+    1. Allow command line to specify (or let WebAppFind determine according to some permutation of the file path) the exact window and possibly Panorama group and/or pinned status into which the web app with desktop file will be opened (the web app could handle moving itself instead but only if the web app were AsYouWish-based and the user preferences supplied the file path). Alternatively, the executable might have logic to determine the profile in a similarly automated (as opposed to hard-coded) manner. The advantage of either approach would be to allow the user a better web app grouping organization corresponding to the hierarchical organization they can find on the desktop.
 1. API changes/additions
     1. Allow not just one, but multiple, file/URL/folder/command-line/web app/etc. arguments to be passed into
     the web application (e.g., for preferences, privilege level simulation or request information, schema,
@@ -585,7 +587,6 @@ JavaScript export).
     directly with each other via postMessage, but this approach allows the
     user to do their own coupling rather than be dependent
     on a particular integration of services.
-    1. Allow command line to specify (or let WebAppFind determine according to some permutation of the file path) the exact window and possibly Panorama group and/or pinned status into which the web app with desktop file will be opened (the web app could handle moving itself instead but only if the web app were AsYouWish-based and the user preferences supplied the file path). Alternatively, the executable might have logic to determine the profile in a similarly automated (as opposed to hard-coded) manner. The advantage of either approach would be to allow the user a better web app grouping organization corresponding to the hierarchical organization they can find on the desktop.
     1. Support an optional, hard-coded web app URL (optionally looking for
     fallbacks if the supplied one is a protocol but not found) and/or
     hard-coded file type (to circumvent the normal detection procedures
