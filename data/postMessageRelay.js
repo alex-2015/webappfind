@@ -64,7 +64,7 @@ l('file protocol');
     else {
 l(pathID);
 l('contentlen'+content.length);
-        document.defaultView.postMessage(['webapp-view', pathID, content], window.location.origin);
+        document.defaultView.postMessage({webappfind: {method: 'local', 'webapp-view', pathID, content}}, window.location.origin);
     }
 });
 

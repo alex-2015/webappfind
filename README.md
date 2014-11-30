@@ -538,22 +538,6 @@ within the desktop)
     1. Check upon each save attempt that the loaded protocol is still registered as a handler (and remove usage notes above once implemented).
     1. Listen for unregistration of protocols to disable acting on future messages from them (only relevant for pages already loaded in this session).
 1. API changes/additions
-    1. Use objects in `postMessage()` communications for greater
-    extensibility, and add a property to indicate the method (as
-    opposed to mode) as "webappfind", so as to distinguish
-    file://-based client-side GET-like code or server-side GET or POST-driven
-    content (which should also provide a "untrusted" property or the like
-    so as to distinguish code with side effects and those without).
-    Develop boilerplate code to work in all possible environments (except
-    for dumb clients or clients with JavaScript disabled making POST
-    requests). Utilize with [URI templates](http://tools.ietf.org/html/rfc6570)
-    for server-side discovery and a special API for postMessage
-    client-side discovery (e.g., if [atyourcommand](https://github.com/brettz9/atyourcommand)
-    were to make known to you the modes available in an app
-    when one is designing a command to shuffle off content to it)? Make
-    this perhaps a mode itself also so that files from the desktop could also
-    be opened in a manner that the web app displays the available modes (and
-    can post them back optionally to a callin app, again, like atyourcommand).
     1. Allow not just one, but multiple, file/URL/folder/command-line/web app/etc. arguments to be passed into
     the web application (e.g., for preferences, privilege level simulation or request information, schema,
     etc.) as an array of objects with the string results of obtaining the file in the specified mode (or
@@ -630,9 +614,12 @@ JavaScript export).
 	across browser is other browsers will be supported in the future) but
 	could allow WAF to work with some legacy apps that do not have the
 	message listening code.
-1. Develop utility wrapper library for API to store to disk via WebAppFind
-and/or to store to `localStorage`, IndexedDB, and/or remote POST/PUT (since
-may wish to keep and possibly synchronize local copy or remote back-up).
+1. Unregister command line handler, etc. on add-on uninstall
+1. Option to avoid or allow new tabs for same URI/mode/filetype/path? (option to get the same tab or new tabs for them?); option to push to all open windows in different manner so can notify user of updates but not change focus, etc.
+1. Submit to AMO, Bower, etc.
+
+## Medium priority todos
+
 1. Complete [Executable Builder](https://github.com/brettz9/executable-builder)
     1. Rewrite C++ exe's as batch scripts (particularly for the sake of [Executable Builder](https://github.com/brettz9/executable-builder)); convert to shortcut tied to cmd.exe for sake of getting an icon
     1. Installer script to run to facilitate setting up of OpenWith per user choices (if Executable Builder is not installed, it could link to it, and if it is, it could bring user through steps).
@@ -643,14 +630,11 @@ modes/custom modes or to otherwise detect and interact with
 them?
 1. Consider encouraging use of MIME types for file type names (perhaps
 more in harmony with emerging Web Wishes specification).
-1. Unregister command line handler, etc. on add-on uninstall
 1. Support processing of filetypes.json for directories (e.g., a
 "directoryMatches" property to be added to filetypes.json).
-1. Option to avoid or allow new tabs for same URI/mode/filetype/path? (option to get the same tab or new tabs for them?); option to push to all open windows in different manner so can notify user of updates but not change focus, etc.
 1. Create tests using registerProtocolHandler (also for JS/JSON/mytype)
-1. Submit to AMO, Bower, etc.
 
-## Medium term priority todos
+## Lower priority todos
 
 1. Document comparison between WebAppFind and routers/controllers in
 typical web apps whose verbs are indicated via URL query string parameters.
@@ -692,6 +676,24 @@ Also right-click to add text or URL contents as itself a context menu
 script. Ensure add-ons support file: and native paths to: open folder
 on desktop, open folder in Firefox file browser, execute on desktop,
 execute with web app
+1. Write utility code
+    1. Leverage `method:'local'` property of API distinguishing
+    file://-based client-side GET-like code or server-side GET or POST-driven
+    content (which should also provide a "untrusted" property or the
+    like so as to distinguish code with side effects and those without).
+    Develop boilerplate code to work in all possible environments (except
+    for dumb clients or clients with JavaScript disabled making POST
+    requests). Utilize with [URI templates](http://tools.ietf.org/html/rfc6570)
+    for server-side discovery and a special API for postMessage
+    client-side discovery (e.g., if [atyourcommand](https://github.com/brettz9/atyourcommand)
+    were to make known to you the modes available in an app
+    when one is designing a command to shuffle off content to it)? Make
+    this perhaps a mode itself also so that files from the desktop could also
+    be opened in a manner that the web app displays the available modes (and
+    can post them back optionally to a callin app, again, like atyourcommand).
+    1. Develop utility wrapper library for API to store to disk via WebAppFind
+    and/or to store to `localStorage`, IndexedDB, and/or remote POST/PUT (since
+    may wish to keep and possibly synchronize local copy or remote back-up).
 1. API for XPath/XQuery (+ [HTTPQuery](https://github.com/brettz9/httpquery))
 like targeted updating within documents, so data decoupled as with files
 (XSS-safe or unsafe versions); PATCH header for more generic updates?

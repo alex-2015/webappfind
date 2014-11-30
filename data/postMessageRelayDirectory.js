@@ -19,7 +19,7 @@ document.defaultView.addEventListener('message', function (e) {
 
 self.port.on('webappfindDirectoryPath', function (result) {
     var path = result.path;
-    document.defaultView.postMessage({webappfind: {directoryPath: path}}, window.location.origin);
+    document.defaultView.postMessage({webappfind: {method: 'local', directoryPath: path}}, window.location.origin);
 });
 
 }());
