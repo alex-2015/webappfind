@@ -1,5 +1,8 @@
 2.0.0
 * Breaking API change: Switch to object-based postMessage API
+* Indicate "method:'local'" to message listeners to allow the same code to be used for data obtained by GET/POST/COOKIE/etc. as with WebAppFind's retrieval of file data, while also distinguishing the source
+if needed.
+* Proper disable/uninstall behavior
 
 1.2.1
 * Update package.json for Addon SDK jpm builder

@@ -614,7 +614,6 @@ JavaScript export).
 	across browser is other browsers will be supported in the future) but
 	could allow WAF to work with some legacy apps that do not have the
 	message listening code.
-1. Unregister command line handler, etc. on add-on uninstall
 1. Option to avoid or allow new tabs for same URI/mode/filetype/path? (option to get the same tab or new tabs for them?); option to push to all open windows in different manner so can notify user of updates but not change focus, etc.
 1. Submit to AMO, Bower, etc.
 
