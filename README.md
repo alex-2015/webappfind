@@ -537,6 +537,7 @@ within the desktop)
     1. Disable further save attempts with bad ID supplied in case a however previously approved site is attempting to guess at the paths of (if the user has enabled path transmission), or at the GUID representing, other non-approved files
     1. Check upon each save attempt that the loaded protocol is still registered as a handler (and remove usage notes above once implemented).
     1. Listen for unregistration of protocols to disable acting on future messages from them (only relevant for pages already loaded in this session).
+1. Option to avoid or allow new tabs for same URI/mode/filetype/path? (option to get the same tab or new tabs for them?); option to push to all open windows in different manner so can notify user of updates but not change focus, etc.
 1. API changes/additions
     1. Allow not just one, but multiple, file/URL/folder/command-line/web app/etc. arguments to be passed into
     the web application (e.g., for preferences, privilege level simulation or request information, schema,
@@ -614,7 +615,6 @@ JavaScript export).
 	across browser is other browsers will be supported in the future) but
 	could allow WAF to work with some legacy apps that do not have the
 	message listening code.
-1. Option to avoid or allow new tabs for same URI/mode/filetype/path? (option to get the same tab or new tabs for them?); option to push to all open windows in different manner so can notify user of updates but not change focus, etc.
 1. Submit to AMO, Bower, etc.
 
 ## Medium priority todos
