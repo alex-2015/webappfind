@@ -17,7 +17,7 @@ document.defaultView.addEventListener('message', function (e) { // Listen for su
 });
 
 self.port.on('webappfindSaveEnd', function (path) {
-    document.defaultView.postMessage(['webapp-save-end', path], window.location.origin);
+    document.defaultView.postMessage({webappfind: {method: 'local', 'webapp-save-end', path}}, window.location.origin);
 });
 
 self.port.on('webappfindStart', function (result) {
@@ -55,7 +55,7 @@ l('made it past uri check' + uri);
 l('file protocol');
         // Todo: We could (and should) set this message to the relevant URL if file: support is added
         try {
-            document.defaultView.postMessage(['webapp-view', pathID, content], '*'); // window.location.href); // Gives security error while window.location.origin is null for file:
+            document.defaultView.postMessage({webappfind: {method: 'local', 'webapp-view', pathID, content}}, '*'); // window.location.href); // Gives security error while window.location.origin is null for file:
         }
         catch(e) {
             l('file protocol err: '+e);
