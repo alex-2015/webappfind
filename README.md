@@ -619,7 +619,8 @@ JavaScript export).
 	message listening code.
     1. Consider off-by-default mechanism for websites to not only ask to handle filetypes, but to ask to
     set up built-in executables or specific executables for OpenWith or default execution of a given file type/extension.
-    Consider alternative with WAF in defining content types for handling by browser and then with sites registering themselves via [registerContentHandler()](https://developer.mozilla.org/en-US/docs/Web/API/Navigator.registerContentHandler).
+    Consider alternative with WAF in defining content types for handling by browser and then with sites registering themselves via [registerContentHandler()](https://developer.mozilla.org/en-US/docs/Web/API/Navigator.registerContentHandler). See,
+    however, [bug 391286](https://bugzilla.mozilla.org/show_bug.cgi?id=391286) for current lack of arbitrary MIME support in Firefox.
 1. Submit to AMO, Bower, etc.
 
 ## Medium priority todos
