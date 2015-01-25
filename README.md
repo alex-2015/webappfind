@@ -617,6 +617,8 @@ JavaScript export).
 	across browser is other browsers will be supported in the future) but
 	could allow WAF to work with some legacy apps that do not have the
 	message listening code.
+    1. Consider off-by-default mechanism for websites to not only ask to handle filetypes, but to ask to
+    set up built-in executables or specific executables for OpenWith or default execution of a given file type/extension.
 1. Submit to AMO, Bower, etc.
 
 ## Medium priority todos
