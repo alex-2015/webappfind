@@ -1,4 +1,7 @@
+.jpmignore
 sample-test-files/*
 demos/*
 *.lnk
 *.xpi
+cplusplus/*
+batch/*
